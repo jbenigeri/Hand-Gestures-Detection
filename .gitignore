@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+env/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (comment out if you want to track data)
+# data/sessions/
+# data/combined/*.csv
+
+# Model files (can be large)
+# models/*/
+# !models/.gitkeep
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
