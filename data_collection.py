@@ -527,6 +527,31 @@ def main():
                     st.warning(issue)
             else:
                 st.success("✅ Data looks good! No major issues detected.")
+            
+            st.divider()
+            
+            # Export section in dashboard
+            st.markdown("### 📤 Export Data")
+            export_col1, export_col2 = st.columns(2)
+            
+            with export_col1:
+                if st.button("🔄 Export Combined CSV", key="dashboard_export", use_container_width=True, type="primary"):
+                    filepath, count = export_combined_dataset()
+                    if filepath:
+                        st.success(f"✅ Exported {count:,} samples to `{filepath}`")
+                    else:
+                        st.warning("No data to export")
+            
+            with export_col2:
+                combined_path = DATA_DIR / "combined" / "all_landmarks.csv"
+                if combined_path.exists():
+                    try:
+                        df = pd.read_csv(combined_path)
+                        st.info(f"📁 Current export: {len(df):,} rows")
+                    except:
+                        st.info("📁 Export file exists")
+                else:
+                    st.info("📁 No export file yet")
     
     # ==================== RECORD TAB ====================
     with tab_record:
