@@ -391,14 +391,14 @@ def main():
         
         st.divider()
         
-        # Export options
-        st.subheader("📤 Export Data")
-        if st.button("🔄 Export Combined CSV", use_container_width=True):
-            filepath, count = export_combined_dataset()
-            if filepath:
-                st.success(f"✅ Exported {count} samples to {filepath}")
-            else:
-                st.warning("No data to export")
+        # # Export options
+        # st.subheader("📤 Export Data")
+        # if st.button("🔄 Export Combined CSV", use_container_width=True):
+        #     filepath, count = export_combined_dataset()
+        #     if filepath:
+        #         st.success(f"✅ Exported {count} samples to {filepath}")
+        #     else:
+        #         st.warning("No data to export")
     
     # Main content - Tabs
     tab_record, tab_dashboard = st.tabs(["📹 Record Data", "📊 Dashboard"])
