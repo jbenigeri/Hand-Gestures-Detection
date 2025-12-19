@@ -239,16 +239,16 @@ def main():
         st.subheader("🔮 Extended Gestures")
         st.caption("*Toggle on to enable*")
         
-        # Finger counting group
-        with st.expander("🔢 Finger Counting", expanded=False):
-            for i in range(1, 6):
-                gesture_key = f"finger_count_{i}"
-                gesture_info = GESTURES[gesture_key]
-                gesture_enabled[gesture_key] = st.checkbox(
-                    f"{gesture_info.emoji} {gesture_info.name}",
-                    value=False,
-                    key=f"toggle_{gesture_key}"
-                )
+        # Finger counting group (disabled)
+        # with st.expander("🔢 Finger Counting", expanded=False):
+        #     for i in range(1, 6):
+        #         gesture_key = f"finger_count_{i}"
+        #         gesture_info = GESTURES[gesture_key]
+        #         gesture_enabled[gesture_key] = st.checkbox(
+        #             f"{gesture_info.emoji} {gesture_info.name}",
+        #             value=False,
+        #             key=f"toggle_{gesture_key}"
+        #         )
         
         # Other extended gestures
         extended_gestures = ["peace", "ok_sign", "pointing", "fist", "rock_on"]

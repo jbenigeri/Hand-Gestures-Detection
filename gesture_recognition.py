@@ -77,11 +77,12 @@ GESTURES = {
     "raised_hand": Gesture("Raised Hand", "✋", (200, 150, 0)),
     "clapping": Gesture("Clapping", "👏", (200, 0, 200)),
     # Extended gestures (Phase 3) - off by default
-    "finger_count_1": Gesture("One", "1️⃣", (255, 180, 0), extended=True),
-    "finger_count_2": Gesture("Two", "2️⃣", (255, 160, 0), extended=True),
-    "finger_count_3": Gesture("Three", "3️⃣", (255, 140, 0), extended=True),
-    "finger_count_4": Gesture("Four", "4️⃣", (255, 120, 0), extended=True),
-    "finger_count_5": Gesture("Five", "5️⃣", (255, 100, 0), extended=True),
+    # Finger counting gestures (disabled)
+    # "finger_count_1": Gesture("One", "1️⃣", (255, 180, 0), extended=True),
+    # "finger_count_2": Gesture("Two", "2️⃣", (255, 160, 0), extended=True),
+    # "finger_count_3": Gesture("Three", "3️⃣", (255, 140, 0), extended=True),
+    # "finger_count_4": Gesture("Four", "4️⃣", (255, 120, 0), extended=True),
+    # "finger_count_5": Gesture("Five", "5️⃣", (255, 100, 0), extended=True),
     "peace": Gesture("Peace", "✌️", (0, 255, 200), extended=True),
     "ok_sign": Gesture("OK", "👌", (100, 255, 100), extended=True),
     "pointing": Gesture("Pointing", "👆", (255, 200, 0), extended=True),
@@ -484,36 +485,37 @@ class GestureRecognizer:
     
     # ==================== Phase 3: Extended Gestures ====================
     
-    def count_extended_fingers(self, hand_landmarks) -> int:
-        """Count the number of extended fingers (0-5)."""
-        count = 0
-        
-        # Thumb: check if extended (using existing method)
-        if self.is_finger_extended(hand_landmarks, HandLandmark.THUMB_TIP,
-                                   HandLandmark.THUMB_IP, HandLandmark.THUMB_MCP, is_thumb=True):
-            count += 1
-        
-        # Index finger
-        if self.is_finger_extended(hand_landmarks, HandLandmark.INDEX_TIP,
-                                   HandLandmark.INDEX_PIP, HandLandmark.INDEX_MCP):
-            count += 1
-        
-        # Middle finger
-        if self.is_finger_extended(hand_landmarks, HandLandmark.MIDDLE_TIP,
-                                   HandLandmark.MIDDLE_PIP, HandLandmark.MIDDLE_MCP):
-            count += 1
-        
-        # Ring finger
-        if self.is_finger_extended(hand_landmarks, HandLandmark.RING_TIP,
-                                   HandLandmark.RING_PIP, HandLandmark.RING_MCP):
-            count += 1
-        
-        # Pinky finger
-        if self.is_finger_extended(hand_landmarks, HandLandmark.PINKY_TIP,
-                                   HandLandmark.PINKY_PIP, HandLandmark.PINKY_MCP):
-            count += 1
-        
-        return count
+    # Finger counting method (disabled)
+    # def count_extended_fingers(self, hand_landmarks) -> int:
+    #     """Count the number of extended fingers (0-5)."""
+    #     count = 0
+    #     
+    #     # Thumb: check if extended (using existing method)
+    #     if self.is_finger_extended(hand_landmarks, HandLandmark.THUMB_TIP,
+    #                                HandLandmark.THUMB_IP, HandLandmark.THUMB_MCP, is_thumb=True):
+    #         count += 1
+    #     
+    #     # Index finger
+    #     if self.is_finger_extended(hand_landmarks, HandLandmark.INDEX_TIP,
+    #                                HandLandmark.INDEX_PIP, HandLandmark.INDEX_MCP):
+    #         count += 1
+    #     
+    #     # Middle finger
+    #     if self.is_finger_extended(hand_landmarks, HandLandmark.MIDDLE_TIP,
+    #                                HandLandmark.MIDDLE_PIP, HandLandmark.MIDDLE_MCP):
+    #         count += 1
+    #     
+    #     # Ring finger
+    #     if self.is_finger_extended(hand_landmarks, HandLandmark.RING_TIP,
+    #                                HandLandmark.RING_PIP, HandLandmark.RING_MCP):
+    #         count += 1
+    #     
+    #     # Pinky finger
+    #     if self.is_finger_extended(hand_landmarks, HandLandmark.PINKY_TIP,
+    #                                HandLandmark.PINKY_PIP, HandLandmark.PINKY_MCP):
+    #         count += 1
+    #     
+    #     return count
     
     def detect_peace(self, hand_landmarks) -> bool:
         """Detect peace sign: index + middle extended, others curled."""
@@ -697,14 +699,14 @@ class GestureRecognizer:
         if is_enabled("fist") and self.detect_fist(hand):
             return "fist", 1.0
         
-        # Finger counting (check if any finger count gesture is enabled)
-        finger_count_enabled = any(is_enabled(f"finger_count_{i}") for i in range(1, 6))
-        if finger_count_enabled:
-            count = self.count_extended_fingers(hand)
-            if 1 <= count <= 5:
-                gesture_name = f"finger_count_{count}"
-                if is_enabled(gesture_name):
-                    return gesture_name, 1.0
+        # Finger counting (disabled)
+        # finger_count_enabled = any(is_enabled(f"finger_count_{i}") for i in range(1, 6))
+        # if finger_count_enabled:
+        #     count = self.count_extended_fingers(hand)
+        #     if 1 <= count <= 5:
+        #         gesture_name = f"finger_count_{count}"
+        #         if is_enabled(gesture_name):
+        #             return gesture_name, 1.0
         
         return "none", 0.0
     
