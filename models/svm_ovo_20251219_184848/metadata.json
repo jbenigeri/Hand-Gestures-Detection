@@ -1,0 +1,27 @@
+{
+  "model_name": "svm_ovo",
+  "timestamp": "20251219_184848",
+  "config": {
+    "C": 1.0,
+    "kernel": "rbf",
+    "strategy": "OvO",
+    "test_size": 0.2
+  },
+  "metrics": {
+    "accuracy": 0.9813432835820896,
+    "f1_score": 0.9812858337837193
+  },
+  "classes": [
+    "clapping",
+    "fist",
+    "ok_sign",
+    "peace",
+    "pointing",
+    "raised_hand",
+    "rock_on",
+    "thumbs_down",
+    "thumbs_up"
+  ],
+  "n_classes": 9,
+  "requires_scaling": true
+}

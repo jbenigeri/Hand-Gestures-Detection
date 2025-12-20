@@ -1,0 +1,26 @@
+{
+  "model_name": "random_forest",
+  "timestamp": "20251219_184847",
+  "config": {
+    "n_estimators": 200,
+    "max_depth": 20,
+    "test_size": 0.2
+  },
+  "metrics": {
+    "accuracy": 0.9888059701492538,
+    "f1_score": 0.988782254129201
+  },
+  "classes": [
+    "clapping",
+    "fist",
+    "ok_sign",
+    "peace",
+    "pointing",
+    "raised_hand",
+    "rock_on",
+    "thumbs_down",
+    "thumbs_up"
+  ],
+  "n_classes": 9,
+  "requires_scaling": false
+}
