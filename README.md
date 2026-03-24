@@ -20,13 +20,33 @@ Real-time hand gesture recognition using MediaPipe and OpenCV. Detects common vi
 
 ## How It Works
 
-This project uses a two-stage approach for gesture recognition:
+This project uses a two-stage pipeline for gesture recognition:
 
-1. **Hand Detection & Landmark Extraction** — [MediaPipe Hands](https://google.github.io/mediapipe/solutions/hands.html) detects hands in the webcam feed and extracts 21 3D landmarks per hand (wrist, finger joints, fingertips).
+### Stage 1: Hand Detection & Landmark Extraction
 
-2. **Gesture Classification** — A Random Forest classifier trained on collected landmark data predicts the gesture. The model achieves **98.9% accuracy** across 9 gesture classes.
+[MediaPipe Hands](https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/hands.md) detects hands in the webcam feed and extracts 21 3D landmarks per hand (wrist, finger joints, fingertips). OpenCV handles webcam capture and image processing (frame capture, color conversion, display).
 
-The training data was collected using the built-in data collection tool, recording landmark positions for each gesture across varying hand positions, distances, and lighting conditions.
+### Stage 2: Gesture Classification
+
+The system supports two classification approaches:
+
+#### Rules-Based (Heuristic)
+
+Uses geometric relationships between landmarks to identify gestures. For example, **Thumbs Up** is detected by checking:
+1. **Thumb pointing up** — thumb tip is significantly above the thumb base (y-coordinate difference > 0.08)
+2. **Other fingers curled** — each fingertip is at or below its corresponding knuckle (MCP joint)
+
+This approach is fast, interpretable, and requires no training data.
+
+#### ML-Based (Random Forest)
+
+A trained classifier that takes normalized landmark coordinates as input:
+1. All 21 landmarks are normalized relative to the wrist position
+2. Coordinates are scaled so the maximum distance from wrist equals 1
+3. The 63 features (x, y, z for each landmark) are fed to a Random Forest model
+4. The model outputs a gesture prediction with a confidence score
+
+The ML model achieves **98.9% accuracy** across 9 gesture classes. Training data was collected using the built-in data collection tool, recording landmark positions for each gesture across varying hand positions, distances, and lighting conditions.
 
 ## Prerequisites
 
