@@ -40,13 +40,15 @@ This approach is fast, interpretable, and requires no training data.
 
 #### ML-Based (Random Forest)
 
-A trained classifier that takes normalized landmark coordinates as input:
+While rules work well for distinct gestures, they struggle with variability. For example, **OK Sign 👌** requires detecting if the thumb and index fingertips are "close enough" to form a circle — but the rules use a fixed distance threshold that doesn't adapt to camera distance, hand size, or how loosely someone forms the gesture.
+
+ML solves this by learning from examples. The classifier takes normalized landmark coordinates as input:
 1. All 21 landmarks are normalized relative to the wrist position
 2. Coordinates are scaled so the maximum distance from wrist equals 1
 3. The 63 features (x, y, z for each landmark) are fed to a Random Forest model
 4. The model outputs a gesture prediction with a confidence score
 
-The ML model achieves **98.9% accuracy** across 9 gesture classes. Training data was collected using the built-in data collection tool, recording landmark positions for each gesture across varying hand positions, distances, and lighting conditions.
+The ML model achieves 98.9% accuracy across 9 gesture classes. Training data was collected using the built-in data collection tool, recording landmark positions for each gesture across varying hand positions, distances, and lighting conditions.
 
 ## Prerequisites
 
