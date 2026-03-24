@@ -12,6 +12,21 @@ Real-time hand gesture recognition using MediaPipe and OpenCV. Detects common vi
 | Thumbs Down | 👎 | Thumb pointing down, other fingers curled |
 | Raised Hand | ✋ | Open palm with all fingers extended |
 | Clapping | 👏 | Two hands close together |
+| Peace | ✌️ | Index and middle fingers extended in a V |
+| OK Sign | 👌 | Thumb and index finger forming a circle |
+| Pointing | 👆 | Index finger extended, others curled |
+| Rock On | 🤘 | Index and pinky fingers extended |
+| Fist | ✊ | All fingers curled into a fist |
+
+## How It Works
+
+This project uses a two-stage approach for gesture recognition:
+
+1. **Hand Detection & Landmark Extraction** — [MediaPipe Hands](https://google.github.io/mediapipe/solutions/hands.html) detects hands in the webcam feed and extracts 21 3D landmarks per hand (wrist, finger joints, fingertips).
+
+2. **Gesture Classification** — A Random Forest classifier trained on collected landmark data predicts the gesture. The model achieves **98.9% accuracy** across 9 gesture classes.
+
+The training data was collected using the built-in data collection tool, recording landmark positions for each gesture across varying hand positions, distances, and lighting conditions.
 
 ## Prerequisites
 
