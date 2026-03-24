@@ -2,7 +2,9 @@
 
 Real-time hand gesture recognition using MediaPipe and OpenCV. Detects common video call gestures and displays emoji reactions on screen.
 
-![Demo](demo.gif)
+<p align="center">
+  <img src="demo.gif" alt="Demo" width="720">
+</p>
 
 ## Supported Gestures
 
